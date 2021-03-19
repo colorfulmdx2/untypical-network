@@ -50,7 +50,8 @@ function App() {
                         : <div>
                             <Header/>
                             <Route exact path='/'><Redirect to={'/users'}/></Route>
-                            < Route path={'/users'} render={() => <UsersTable/>}/>
+                            <Route path={'/users'} render={() => <UsersTable/>}/>
+                            <Route path={'/user/:id'} render={() => <UsersTable/>}/>
                         </div>
                 }
 

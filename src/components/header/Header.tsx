@@ -150,7 +150,7 @@ export const Header = () => {
                     <Alert className={classes.alert}
                            severity="info"
                            onClose={() => setInfo(false)}
-                    >{languagePackage[lang].addUserNotification}</Alert>
+                    >{languagePackage[lang].notification}</Alert>
                 </Grow>
 
                 <AddUserModal isOpen={open}

@@ -20,15 +20,13 @@ let initialState = {
             darkMode: 'Dark Mode',
             login: 'login',
             logOut: 'Logout',
-            addUserNotification: 'You have to log in before adding users',
-            deleteUserNotification: 'Please log in to delete user'
+            notification: 'You have to login before make this action'
         },
         ru: {
             darkMode: 'Темная',
             login: 'логин',
             logOut: 'Выйти',
-            addUserNotification: 'Авторизируйтесь для добавления пользователя',
-            deleteUserNotification: 'Авторизируйтесь для удаления пользователя'
+            notification: 'Авторизуйтесь для совершения данного действия'
         }
     },
     favorites: [] as any,
@@ -61,9 +59,7 @@ const slice = createSlice({
         setUsers(state, action: PayloadAction<{users: Array<UserType>}>) {
            state.users = action.payload.users
         },
-
         setFavorites(state, action: PayloadAction<{users: Array<UserType>}>) {
-
             state.favorites = action.payload.users
         },
 
@@ -183,7 +179,8 @@ export const addUser = createAsyncThunk('reducer/addUser', async (user: UserType
 })
 
 export const deleteUser = createAsyncThunk('reducer/deleteUser', async (id: string, thunkAPI) => {
-    await db.collection('favorites').doc(id).delete()
+
+    await db.collection('users').doc(id).delete()
 })
 
 //----------------------------------------------------------------------------------------------------------------------

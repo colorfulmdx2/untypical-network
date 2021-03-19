@@ -2,17 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="36d26d3c-f4a4-41c4-98d7-df55f3559034" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/header/Header.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/modal/AddUserModal.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/users/Users.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/firebase/firebase.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/redux/reducer.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/redux/store.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/modal/AddUserModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modal/AddUserModal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/users/Users.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/users/Users.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducer.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +75,7 @@
       <workItem from="1615913582687" duration="15891000" />
       <workItem from="1615983714907" duration="16809000" />
       <workItem from="1616087221598" duration="2000" />
-      <workItem from="1616087843178" duration="27374000" />
+      <workItem from="1616087843178" duration="29680000" />
     </task>
     <task id="LOCAL-00001" summary="init: start untypical-network">
       <created>1615891467188</created>
@@ -97,7 +91,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615891533308</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="feat: end up firebase storage">
+      <created>1616181014603</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1616181014603</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -105,13 +106,14 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init: start untypical-network" />
-    <option name="LAST_COMMIT_MESSAGE" value="init: start untypical-network" />
+    <MESSAGE value="feat: end up firebase storage" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: end up firebase storage" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="422" y="0" key="CommitChangelistDialog2" timestamp="1615891532512">
+    <state x="422" y="0" key="CommitChangelistDialog2" timestamp="1616181011960">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="422" y="0" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1615891532512" />
+    <state x="422" y="0" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1616181011960" />
     <state x="640" y="159" key="FileChooserDialogImpl" timestamp="1616098628857">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -136,9 +138,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1887" height="254" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1615912818908" />
-    <state x="352" y="104" key="Vcs.Push.Dialog.v2" timestamp="1615891537600">
+    <state x="352" y="104" key="Vcs.Push.Dialog.v2" timestamp="1616181022797">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="352" y="104" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1615891537600" />
+    <state x="352" y="104" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1616181022797" />
   </component>
 </project>

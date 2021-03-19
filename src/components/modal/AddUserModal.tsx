@@ -14,6 +14,7 @@ type AddUserModalType = {
     isOpen: boolean
     handleOpen: () => void
     handleClose: () => void
+    id?: string
 }
 
 
@@ -119,7 +120,7 @@ export const AddUserModal = (props: AddUserModalType) => {
                 email: email,
                 name: name,
                 sex: sex,
-                id: String(Math.floor(Math.random() * 1000000000))
+                id: props.id ? props.id : String(Math.floor(Math.random() * 1000000000))
             }))
             props.handleClose()
         }
@@ -176,7 +177,7 @@ export const AddUserModal = (props: AddUserModalType) => {
                         </Select>
                     </FormControl>
                     <AddButton onClick={AddUserHandler} variant="outlined">
-                        Add
+                       Go
                     </AddButton>
                 </form>
 
