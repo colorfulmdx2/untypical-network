@@ -36,7 +36,7 @@ function App() {
     const history = useHistory()
     const dispatch = useDispatch()
 
-    const {user, auth, lang, languagePackage} = useSelector<AppStateType, any>(state => state.reducer)
+    const {lang, languagePackage} = useSelector<AppStateType, any>(state => state.reducer)
 
     useEffect(() => {
         dispatch(initializeApp())

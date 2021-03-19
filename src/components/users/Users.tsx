@@ -23,7 +23,7 @@ import WcIcon from '@material-ui/icons/Wc';
 import Alert from "@material-ui/lab/Alert";
 import EditIcon from '@material-ui/icons/Edit';
 import {AddUserModal} from "../modal/AddUserModal";
-import { useHistory } from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 
 export const UsersTable = React.memo(() => {
 
@@ -76,7 +76,6 @@ export const UsersTable = React.memo(() => {
         </>
     )
 })
-
 
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -184,7 +183,7 @@ const User = React.memo((props: UserType) => {
             setInfo(true)
         } else {
             // eslint-disable-next-line no-restricted-globals
-            const confirmValue = confirm('Delete this user?')
+            const confirmValue = confirm(languagePackage[lang].deleteConfirm)
             confirmValue && dispatch(deleteUser(props.id))
         }
     }
@@ -245,13 +244,25 @@ const User = React.memo((props: UserType) => {
                                 }}
                                 variant="dot"
                             >
-                                <Avatar>{props.name.substr(0, 1)}</Avatar>
+                                <Avatar style={{
+                                    width: 50,
+                                    height: 50,
+                                    fontSize: 40
+                                }}>{props.name.substr(0, 1).toLocaleUpperCase()}</Avatar>
                             </StyledBadge>
-                            <Typography className={classes.typography}><AssignmentIcon
-                                className={classes.icon}/>{props.name}</Typography>
-                            <Typography className={classes.typography}><EmailIcon
-                                className={classes.icon}/>{props.email}</Typography>
-                            <Typography className={classes.typography}><WcIcon className={classes.icon}/>{props.sex}
+                            <Typography className={classes.typography}>
+                                <AssignmentIcon className={classes.icon}/>
+                                {props.name}
+                            </Typography>
+                            <Typography className={classes.typography}>
+                                <EmailIcon className={classes.icon}/>
+                                {props.email}
+                            </Typography>
+                            <Typography className={classes.typography}>
+                                <WcIcon className={classes.icon}/>
+                                {
+                                    props.sex
+                                }
                             </Typography>
 
 

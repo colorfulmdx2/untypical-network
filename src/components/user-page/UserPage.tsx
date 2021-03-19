@@ -23,7 +23,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import AssignmentIcon from "@material-ui/icons/Assignment";
 import EmailIcon from "@material-ui/icons/Email";
 import WcIcon from "@material-ui/icons/Wc";
-import { useParams } from "react-router-dom";
+import {useHistory, useParams} from "react-router-dom";
 
 type UserPagePropsType = {
     users: UserType[]
@@ -44,8 +44,8 @@ export const UserPage = React.memo((props: UserPagePropsType) => {
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                minHeight: 150,
                 padding: 20,
+
 
             },
             delete: {
@@ -74,7 +74,10 @@ export const UserPage = React.memo((props: UserPagePropsType) => {
 
             },
             icon: {
-                marginRight: 60
+                marginRight: 60,
+                [theme.breakpoints.down('md')]: {
+                    marginRight: 30,
+                }
             },
             alert: {
                 position: 'absolute',
@@ -86,7 +89,10 @@ export const UserPage = React.memo((props: UserPagePropsType) => {
                 zIndex: 101
             },
             card: {
-                position: 'relative'
+                position: 'relative',
+                width: '80%',
+                height: '80%',
+                margin: '0 auto'
             }
 
 
@@ -95,18 +101,18 @@ export const UserPage = React.memo((props: UserPagePropsType) => {
 
     const classes = useStyles()
     const dispatch = useDispatch()
-    const params = useParams<{id: string}>()
-
+    const params = useParams<{ id: string }>()
+    const history = useHistory()
     const user = props.users.find(e => e.id === params.id)
-    console.log(user)
 
     const deleteButtonHandler = () => {
         if (!auth) {
             setInfo(true)
         } else {
             // eslint-disable-next-line no-restricted-globals
-            const confirmValue = confirm('Delete this user?')
+            const confirmValue = confirm(languagePackage[lang].deleteConfirm)
             confirmValue && dispatch(deleteUser(params.id))
+            history.push('/')
         }
     }
 
@@ -127,7 +133,7 @@ export const UserPage = React.memo((props: UserPagePropsType) => {
 
     return (
         <Fade in={true}>
-            <Grid item style={{marginTop: 200}}>
+            <Grid item style={{marginTop: 70}}>
                 <AddUserModal isOpen={open}
                               handleClose={handleModalClose}
                               handleOpen={handleModalOpen}
@@ -154,7 +160,6 @@ export const UserPage = React.memo((props: UserPagePropsType) => {
                         <EditIcon color='primary'
                                   className={classes.edit}/>
                     </IconButton>
-                    <CardActionArea>
                         <Paper className={classes.box}>
                             <StyledBadge
                                 overlap="circle"
@@ -164,18 +169,18 @@ export const UserPage = React.memo((props: UserPagePropsType) => {
                                 }}
                                 variant="dot"
                             >
-                                <Avatar>{user && user.name.substr(0, 1)}</Avatar>
+                                <Avatar style={{width: 50, height: 50, fontSize: 40}}>{user && user.name.substr(0, 1).toLocaleUpperCase()}</Avatar>
                             </StyledBadge>
                             <Typography className={classes.typography}><AssignmentIcon
                                 className={classes.icon}/>{user && user.name}</Typography>
                             <Typography className={classes.typography}><EmailIcon
                                 className={classes.icon}/>{user && user.email}</Typography>
-                            <Typography className={classes.typography}><WcIcon className={classes.icon}/>{user && user.sex}
+                            <Typography className={classes.typography}><WcIcon
+                                className={classes.icon}/>{user && user.sex}
                             </Typography>
 
 
                         </Paper>
-                    </CardActionArea>
                 </Card>
             </Grid>
         </Fade>

@@ -18,7 +18,7 @@ type AddUserModalType = {
 
 export const AddUserModal = React.memo((props: AddUserModalType) => {
 
-    const {darkMode, users} = useSelector<AppStateType, any>(state => state.reducer)
+    const {darkMode, lang, languagePackage} = useSelector<AppStateType, any>(state => state.reducer)
 
     const useStyles = makeStyles((theme: Theme) =>
         createStyles({
@@ -53,22 +53,6 @@ export const AddUserModal = React.memo((props: AddUserModalType) => {
             }
         }),
     );
-
-
-    const Input = withStyles({
-        root: {
-            margin: 10,
-            '& label.Mui-focused': {
-                color: darkMode ? indigo[300] : grey[700],
-            },
-            '& .MuiOutlinedInput-root': {
-                '&.Mui-focused fieldset': {
-                    borderColor: darkMode ? indigo[300] : grey[700]
-                },
-            },
-        }
-    })
-    (TextField);
 
     const AddButton = withStyles({
         root: {
@@ -144,8 +128,8 @@ export const AddUserModal = React.memo((props: AddUserModalType) => {
                 >
                     <TextField error={emailError}
                                className={classes.input}
-                               label={'Email'}
-                               helperText={emailError ? 'Invalid email' : ''}
+                               label={languagePackage[lang].email}
+                               helperText={emailError ? languagePackage[lang].invalidEmail : ''}
                                variant="outlined"
                                color={'primary'}
                                value={email}
@@ -154,7 +138,7 @@ export const AddUserModal = React.memo((props: AddUserModalType) => {
                     />
                     <TextField error={false}
                                className={classes.input}
-                               label={'Name'}
+                               label={languagePackage[lang].name}
                                helperText={''}
                                variant="outlined"
                                color={'secondary'}
@@ -162,20 +146,19 @@ export const AddUserModal = React.memo((props: AddUserModalType) => {
                                onChange={nameHandler}
                     />
                     <FormControl>
-                        <InputLabel id="demo-simple-select-required-label">Sex</InputLabel>
+                        <InputLabel id="demo-simple-select-required-label">{languagePackage[lang].sex}</InputLabel>
                         <Select
                             labelId="demo-simple-select-outlined-label"
                             id="demo-simple-select-outlined"
-                            label="Age"
                             value={sex}
                             onChange={sexHandler}
                         >
-                            <MenuItem value={'Male'}>Male</MenuItem>
-                            <MenuItem value={'Female'}>Female</MenuItem>
+                            <MenuItem value={'Male'}>{languagePackage[lang].male}</MenuItem>
+                            <MenuItem value={'Female'}>{languagePackage[lang].female}</MenuItem>
                         </Select>
                     </FormControl>
                     <AddButton onClick={AddUserHandler} variant="outlined">
-                        Go
+                        {languagePackage[lang].go}
                     </AddButton>
                 </form>
 

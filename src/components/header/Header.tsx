@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -22,7 +22,9 @@ const useStyles = makeStyles((theme: Theme) =>
         grow: {
             flexGrow: 1,
         },
-        title: {},
+        title: {
+            cursor: 'pointer'
+        },
 
         sectionDesktop: {
             display: 'flex',
@@ -51,7 +53,7 @@ const useStyles = makeStyles((theme: Theme) =>
             right: 0,
             margin: '0 auto',
             width: 320,
-            zIndex: 100
+            zIndex: 101
         },
         selected: {
             color: blue[500],
@@ -97,8 +99,8 @@ export const Header = React.memo(() => {
     }
 
     const classes = useStyles();
-
-    const {favorites, user, auth, lang, languagePackage} = useSelector<AppStateType, any>(state => state.reducer)
+    const history = useHistory()
+    const {user, auth, lang, languagePackage} = useSelector<AppStateType, any>(state => state.reducer)
 
     const [info, setInfo] = useState(false)
 
@@ -130,7 +132,7 @@ export const Header = React.memo(() => {
                 <AppBar position="static">
                     <Toolbar>
 
-                        <Typography className={classes.title} variant="h6" noWrap>
+                        <Typography className={classes.title} variant="h6" noWrap onClick={() => history.push('/')}>
                             Users
                         </Typography>
 
@@ -162,21 +164,6 @@ export const Header = React.memo(() => {
                                                   />
                                               }
                             />
-
-
-                            <NavLink to={'/favorites'}>
-                                <IconButton color="secondary">
-                                    <Badge badgeContent={Object.keys(favorites).length}
-                                           color="secondary"
-                                           anchorOrigin={{
-                                               vertical: 'bottom',
-                                               horizontal: 'right',
-                                           }}
-                                    >
-                                        <FavoriteIcon/>
-                                    </Badge>
-                                </IconButton>
-                            </NavLink>
 
                             {
                                 user ? <div>

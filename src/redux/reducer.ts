@@ -20,16 +20,31 @@ let initialState = {
             darkMode: 'Dark Mode',
             login: 'login',
             logOut: 'Logout',
-            notification: 'You have to login before make this action'
+            notification: 'You have to login before make this action',
+            deleteConfirm: 'Do you really want to delete this user?',
+            email: 'Email',
+            name: 'Name',
+            go: 'Go',
+            invalidEmail: 'Invalid email',
+            sex: 'Sex',
+            male: 'Male',
+            female: 'Female'
         },
         ru: {
             darkMode: 'Темная',
             login: 'логин',
             logOut: 'Выйти',
-            notification: 'Авторизуйтесь для совершения данного действия'
+            notification: 'Авторизуйтесь для совершения данного действия',
+            deleteConfirm: 'Вы действительно хотите удалить этого пользователя?',
+            email: 'Почта',
+            name: 'Имя',
+            go: 'Поехали',
+            invalidEmail: 'Некорректный формат',
+            sex: 'Пол',
+            male: 'Мужской',
+            female: 'Женский'
         }
     },
-    favorites: [] as any,
     users: [] as any
 }
 
@@ -53,23 +68,16 @@ const slice = createSlice({
         setLanguage(state, action: PayloadAction<{ value: 'ru' | 'en' | string }>) {
             state.lang = action.payload.value
         },
-        addUserAC(state, action: PayloadAction<{name: string, email: string, sex: string}>) {
-            state.users.push(action.payload)
-        },
         setUsers(state, action: PayloadAction<{users: Array<UserType>}>) {
            state.users = action.payload.users
         },
-        setFavorites(state, action: PayloadAction<{users: Array<UserType>}>) {
-            state.favorites = action.payload.users
-        },
-
     },
     extraReducers: (builder) => {
 
     }
 })
 
-export const {isAuth, setDarkMod, setUserData, setPreloader, setLanguage, addUserAC, setUsers, setFavorites} = slice.actions
+export const {isAuth, setDarkMod, setUserData, setPreloader, setLanguage, setUsers} = slice.actions
 
 //Thunks----------------------------------------------------------------------------------------------------------------
 
@@ -88,11 +96,6 @@ export const login = createAsyncThunk('reducer/login', async (arg, thunkAPI) => 
         }
         thunkAPI.dispatch(setUserData({user: userData}));
         thunkAPI.dispatch(isAuth({value: true}))
-
-
-        await thunkAPI.dispatch(getFavorites())
-
-        //await dispatch(addMoviesListener())
     } catch (e) {
         console.log(e)
     } finally {
@@ -116,8 +119,6 @@ export const authMe = createAsyncThunk('reducer/authMe', async (arg, thunkAPI) =
                     thunkAPI.dispatch(setUserData({user: userData}));
                     thunkAPI.dispatch(isAuth({value: true}))
                     thunkAPI.dispatch(addUserListener())
-                    thunkAPI.dispatch(addFavoritesListener())
-
                 } else {
                     thunkAPI.dispatch(setUserData({user: null}));
                 }
@@ -185,45 +186,8 @@ export const deleteUser = createAsyncThunk('reducer/deleteUser', async (id: stri
 
 //----------------------------------------------------------------------------------------------------------------------
 
-export const getFavorites = createAsyncThunk('reducer/getFavorites', async (arg, thunkAPI) => {
-
-    const userId = firebase.auth().currentUser?.uid
-    const moviesColl = db.collection('favorites').doc(`${userId}`).collection('favorites')
-
-    const data = await moviesColl.get()
 
 
-
-    let users: UserType[] = []
-    data.forEach((e) => {
-        // @ts-ignore
-        //users[doc.id] = doc.data()
-        users.push(e.data())
-    })
-    thunkAPI.dispatch(setFavorites({users}))
-})
-
-export const addFavoritesListener = createAsyncThunk('reducer/addFavoritesListener', async (arg, thunkAPI) => {
-
-    const usersCollection = db.collection('users')
-
-    usersCollection.onSnapshot(async doc => {
-        const data = await usersCollection.get()
-        let users: UserType[] = []
-        data.forEach((doc) => {
-            // @ts-ignore
-            users.push(doc.data())
-        })
-        thunkAPI.dispatch(setUsers({users}))
-
-    })
-})
-
-export const addToFavorites = createAsyncThunk('reducer/addToFavorites', async (user: UserType, thunkAPI) => {
-    await db.collection('favorites').doc(user.id).collection('favorites').doc(`${user.id}`).set(user)
-})
-
-//----------------------------------------------------------------------------------------------------------------------
 
 export const reducer = slice.reducer
 
