@@ -2,11 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="36d26d3c-f4a4-41c4-98d7-df55f3559034" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/header/Header.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/modal/AddUserModal.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/users/Users.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/firebase/firebase.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/redux/reducer.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/redux/store.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -28,6 +33,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../towel-sort" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -35,6 +41,16 @@
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="ts.external.directory.path" value="D:\Training_Files\React_Projects\untypical-network\node_modules\typescript\lib" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Training_Files\React_Projects\untypical-network\src\components" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Training_Files\React_Projects\untypical-network\src\components\header" />
+      <recent name="D:\Training_Files\React_Projects\untypical-network\src" />
+      <recent name="D:\Training_Files\React_Projects\untypical-network\src\redux" />
+    </key>
   </component>
   <component name="RunManager" selected="npm.npm start">
     <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
@@ -61,41 +77,68 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1615887954434</updated>
-      <workItem from="1615887955916" duration="2136000" />
+      <workItem from="1615887955916" duration="5498000" />
+      <workItem from="1615913582687" duration="15891000" />
+      <workItem from="1615983714907" duration="16809000" />
+      <workItem from="1616087221598" duration="2000" />
+      <workItem from="1616087843178" duration="27374000" />
     </task>
+    <task id="LOCAL-00001" summary="init: start untypical-network">
+      <created>1615891467188</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1615891467188</updated>
+    </task>
+    <task id="LOCAL-00002" summary="init: start untypical-network">
+      <created>1615891533308</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1615891533308</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="init: start untypical-network" />
+    <option name="LAST_COMMIT_MESSAGE" value="init: start untypical-network" />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="422" y="0" key="CommitChangelistDialog2" timestamp="1615891463448">
+    <state x="422" y="0" key="CommitChangelistDialog2" timestamp="1615891532512">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="422" y="0" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1615891463448" />
+    <state x="422" y="0" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1615891532512" />
+    <state x="640" y="159" key="FileChooserDialogImpl" timestamp="1616098628857">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="640" y="159" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1616098628857" />
     <state x="755" y="365" key="Github.ShareDialog" timestamp="1615891493107">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="755" y="365" key="Github.ShareDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1615891493107" />
-    <state width="1887" height="254" key="GridCell.Tab.0.bottom" timestamp="1615890617193">
+    <state width="1887" height="254" key="GridCell.Tab.0.bottom" timestamp="1615912818908">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1887" height="254" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1615890617193" />
-    <state width="1887" height="254" key="GridCell.Tab.0.center" timestamp="1615890617193">
+    <state width="1887" height="254" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1615912818908" />
+    <state width="1887" height="254" key="GridCell.Tab.0.center" timestamp="1615912818908">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1887" height="254" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1615890617193" />
-    <state width="1887" height="254" key="GridCell.Tab.0.left" timestamp="1615890617192">
+    <state width="1887" height="254" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1615912818908" />
+    <state width="1887" height="254" key="GridCell.Tab.0.left" timestamp="1615912818907">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1887" height="254" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1615890617192" />
-    <state width="1887" height="254" key="GridCell.Tab.0.right" timestamp="1615890617193">
+    <state width="1887" height="254" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1615912818907" />
+    <state width="1887" height="254" key="GridCell.Tab.0.right" timestamp="1615912818908">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1887" height="254" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1615890617193" />
-    <state x="352" y="104" key="Vcs.Push.Dialog.v2" timestamp="1615891469764">
+    <state width="1887" height="254" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1615912818908" />
+    <state x="352" y="104" key="Vcs.Push.Dialog.v2" timestamp="1615891537600">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="352" y="104" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1615891469764" />
+    <state x="352" y="104" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1615891537600" />
   </component>
 </project>
