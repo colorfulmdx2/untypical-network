@@ -1,14 +1,12 @@
 import React, {useState} from 'react';
-import {makeStyles, Theme, createStyles, withStyles} from '@material-ui/core/styles';
+import {createStyles, makeStyles, Theme, withStyles} from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
 import {Button, FormControl, InputLabel, MenuItem, Select, TextField} from "@material-ui/core";
-import {useFormik} from "formik";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../redux/store";
-import {grey, indigo, red} from "@material-ui/core/colors";
-import {addUser, addUserAC} from '../../redux/reducer';
+import {grey, indigo} from "@material-ui/core/colors";
+import {addUser} from '../../redux/reducer';
 
 type AddUserModalType = {
     isOpen: boolean
@@ -18,7 +16,7 @@ type AddUserModalType = {
 }
 
 
-export const AddUserModal = (props: AddUserModalType) => {
+export const AddUserModal = React.memo((props: AddUserModalType) => {
 
     const {darkMode, users} = useSelector<AppStateType, any>(state => state.reducer)
 
@@ -114,7 +112,7 @@ export const AddUserModal = (props: AddUserModalType) => {
 
 
         if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
-          setEmailError(true)
+            setEmailError(true)
         } else {
             dispatch(addUser({
                 email: email,
@@ -177,11 +175,11 @@ export const AddUserModal = (props: AddUserModalType) => {
                         </Select>
                     </FormControl>
                     <AddButton onClick={AddUserHandler} variant="outlined">
-                       Go
+                        Go
                     </AddButton>
                 </form>
 
             </Modal>
         </div>
     );
-}
+})

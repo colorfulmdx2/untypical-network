@@ -65,7 +65,7 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export const Header = () => {
+export const Header = React.memo(() => {
 
     const [open, setOpen] = useState(false)
 
@@ -76,7 +76,7 @@ export const Header = () => {
     const handleModalOpen = () => {
         setOpen(true);
     };
-    const [isFirstRendering, setFirstRendering] = useState(true)
+
     const [anchorEl, setAnchorEl] = useState(null)
 
     const handleClick = (e: any) => {
@@ -88,7 +88,7 @@ export const Header = () => {
     }
 
     const dispatch = useDispatch()
-    const history = useHistory()
+
 
     const darkMode = useSelector<AppStateType, boolean>(state => state.reducer.darkMode)
 
@@ -110,38 +110,7 @@ export const Header = () => {
         }
     }
 
-    useEffect(() => {
-        if (isFirstRendering) {
-            const urlData: { [key: string]: string } = {}
 
-            new URLSearchParams(history.location.search).forEach((value, key) => {
-                urlData[key] = value
-            })
-
-            if (urlData.lang) {
-                dispatch(setLanguage({value: urlData.lang}))
-            }
-            setFirstRendering(false)
-        }
-
-
-    }, [lang, dispatch, history.location.search, isFirstRendering])
-
-    useEffect(() => {
-
-        if (!isFirstRendering) {
-
-            const searchObj: { [key: string]: string } = {}
-
-            if (lang) searchObj.lang = lang
-
-            const queryObj = new URLSearchParams(searchObj)
-
-            history.push({
-                search: queryObj.toString(),
-            })
-        }
-    }, [lang, dispatch, history, isFirstRendering])
 
     return (
         <Grow in={true}>
@@ -247,4 +216,4 @@ export const Header = () => {
         </Grow>
     )
         ;
-}
+})

@@ -23,8 +23,9 @@ import WcIcon from '@material-ui/icons/Wc';
 import Alert from "@material-ui/lab/Alert";
 import EditIcon from '@material-ui/icons/Edit';
 import {AddUserModal} from "../modal/AddUserModal";
+import { useHistory } from 'react-router-dom';
 
-export const UsersTable = () => {
+export const UsersTable = React.memo(() => {
 
     const useStyles = makeStyles((theme: Theme) =>
         createStyles({
@@ -74,7 +75,7 @@ export const UsersTable = () => {
             </Grid>
         </>
     )
-}
+})
 
 
 
@@ -111,7 +112,7 @@ const StyledBadge = withStyles((theme: Theme) =>
     }),
 )(Badge);
 
-const User = (props: UserType) => {
+const User = React.memo((props: UserType) => {
 
     const [info, setInfo] = useState(false)
     const {darkMode, languagePackage, lang, auth} = useSelector<AppStateType, any>(state => state.reducer)
@@ -176,6 +177,7 @@ const User = (props: UserType) => {
 
     const classes = useStyles()
     const dispatch = useDispatch()
+    const history = useHistory()
 
     const deleteButtonHandler = () => {
         if (!auth) {
@@ -229,10 +231,12 @@ const User = (props: UserType) => {
                                 onClick={editButtonHandler}
                     >
                         <EditIcon color='primary'
-                                    className={classes.edit}/>
+                                  className={classes.edit}/>
                     </IconButton>
                     <CardActionArea>
-                        <Paper className={classes.box}>
+                        <Paper className={classes.box}
+                               onClick={() => history.push(`/user/${props.id}`)}
+                        >
                             <StyledBadge
                                 overlap="circle"
                                 anchorOrigin={{
@@ -257,9 +261,6 @@ const User = (props: UserType) => {
             </Grid>
         </Fade>
     )
-}
+})
 
 
-function useStyles() {
-    throw new Error('Function not implemented.');
-}

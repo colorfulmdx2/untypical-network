@@ -1,13 +1,14 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import {CircularProgress, createMuiTheme, Paper, ThemeProvider} from "@material-ui/core";
 import {grey, indigo} from "@material-ui/core/colors";
 import {AppStateType} from "./redux/store";
 import {useDispatch, useSelector} from "react-redux";
-import {Redirect, Route} from 'react-router-dom';
+import {Redirect, Route, useHistory} from 'react-router-dom';
 import {UsersTable} from './components/users/Users';
-import {getUsers, initializeApp} from "./redux/reducer";
+import {getUsers, initializeApp, setLanguage, UserType} from "./redux/reducer";
 import {Header} from "./components/header/Header";
+import {UserPage} from "./components/user-page/UserPage";
 
 
 function App() {
@@ -30,15 +31,52 @@ function App() {
         }
     })
 
+    const [isFirstRendering, setFirstRendering] = useState(true)
+
+    const history = useHistory()
     const dispatch = useDispatch()
+
+    const {user, auth, lang, languagePackage} = useSelector<AppStateType, any>(state => state.reducer)
 
     useEffect(() => {
         dispatch(initializeApp())
-
-
         dispatch(getUsers())
-
     }, [dispatch])
+
+    useEffect(() => {
+        if (isFirstRendering) {
+            const urlData: { [key: string]: string } = {}
+
+            new URLSearchParams(history.location.search).forEach((value, key) => {
+                urlData[key] = value
+            })
+
+            if (urlData.lang) {
+                dispatch(setLanguage({value: urlData.lang}))
+            }
+            setFirstRendering(false)
+        }
+
+
+    }, [lang, dispatch, history.location.search, isFirstRendering])
+
+    useEffect(() => {
+
+        if (!isFirstRendering) {
+
+            const searchObj: { [key: string]: string } = {}
+
+            if (lang) searchObj.lang = lang
+
+            const queryObj = new URLSearchParams(searchObj)
+
+            history.push({
+                search: queryObj.toString(),
+            })
+        }
+    }, [lang, dispatch, history, isFirstRendering])
+
+    const users = useSelector<AppStateType, UserType[]>(state => state.reducer.users)
 
     return (
         <ThemeProvider theme={theme}>
@@ -51,7 +89,7 @@ function App() {
                             <Header/>
                             <Route exact path='/'><Redirect to={'/users'}/></Route>
                             <Route path={'/users'} render={() => <UsersTable/>}/>
-                            <Route path={'/user/:id'} render={() => <UsersTable/>}/>
+                            <Route path={'/user/:id'} render={() => <UserPage users={users}/>}/>
                         </div>
                 }
 
