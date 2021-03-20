@@ -6,17 +6,19 @@ import {Button, FormControl, InputLabel, MenuItem, Select, TextField} from "@mat
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../redux/store";
 import {grey, indigo} from "@material-ui/core/colors";
-import {addUser} from '../../redux/reducer';
+import {addUser, UserType} from '../../redux/reducer';
+import { v4 as uuidv4 } from 'uuid';
 
 type AddUserModalType = {
     isOpen: boolean
     handleOpen: () => void
     handleClose: () => void
+    user?: UserType
     id?: string
 }
 
 
-export const AddUserModal = React.memo((props: AddUserModalType) => {
+export const UserModal = React.memo((props: AddUserModalType) => {
 
     const {darkMode, lang, languagePackage} = useSelector<AppStateType, any>(state => state.reducer)
 
@@ -67,18 +69,17 @@ export const AddUserModal = React.memo((props: AddUserModalType) => {
             },
         }
     })
-    (Button);
+    (Button)
 
 
-
-    const classes = useStyles();
+    const classes = useStyles()
     const dispatch = useDispatch()
 
-    const [email, setEmail] = useState('')
+    const [email, setEmail] = useState(props.user ? props.user.email: '')
     const [emailError, setEmailError] = useState(false)
 
-    const [name, setName] = useState('')
-    const [sex, setSex] = useState('Male')
+    const [name, setName] = useState(props.user ? props.user.name: '')
+    const [sex, setSex] = useState('male')
 
     const emailHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(e.currentTarget.value)
@@ -93,8 +94,6 @@ export const AddUserModal = React.memo((props: AddUserModalType) => {
     }
 
     const AddUserHandler = () => {
-
-
         if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
             setEmailError(true)
         } else {
@@ -102,12 +101,12 @@ export const AddUserModal = React.memo((props: AddUserModalType) => {
                 email: email,
                 name: name,
                 sex: sex,
-                id: props.id ? props.id : String(Math.floor(Math.random() * 1000000000))
+                id: props.user ? props.user.id : uuidv4()
             }))
             props.handleClose()
+            setName('')
+            setEmail('')
         }
-
-
     }
     return (
         <div style={{boxSizing: 'border-box'}}>
@@ -151,6 +150,7 @@ export const AddUserModal = React.memo((props: AddUserModalType) => {
                             labelId="demo-simple-select-outlined-label"
                             id="demo-simple-select-outlined"
                             value={sex}
+                            defaultValue={sex}
                             onChange={sexHandler}
                         >
                             <MenuItem value={'male'}>{languagePackage[lang].male}</MenuItem>

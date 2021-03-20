@@ -23,7 +23,8 @@ import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import Alert from '@material-ui/lab/Alert';
 import {blue, grey} from "@material-ui/core/colors";
-import {AddUserModal} from "../modal/AddUserModal";
+import {UserModal} from "../modal/UserModal";
+import FaceIcon from '@material-ui/icons/Face';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -78,7 +79,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export const Header = React.memo(() => {
 
     const dispatch = useDispatch()
-    const classes = useStyles();
+    const classes = useStyles()
     const history = useHistory()
 
     const [open, setOpen] = useState(false)
@@ -88,10 +89,10 @@ export const Header = React.memo(() => {
     const {user, auth, lang, languagePackage, darkMode, maleOnly} = useSelector<AppStateType, any>(state => state.reducer)
 
     const handleModalClose = () => {
-        setOpen(false);
+        setOpen(false)
     };
     const handleModalOpen = () => {
-        setOpen(true);
+        setOpen(true)
     };
 
     const handleClick = (e: any) => {
@@ -128,9 +129,9 @@ export const Header = React.memo(() => {
                     >{languagePackage[lang].notification}</Alert>
                 </Grow>
 
-                <AddUserModal isOpen={open}
-                              handleClose={handleModalClose}
-                              handleOpen={handleModalOpen}
+                <UserModal isOpen={open}
+                           handleClose={handleModalClose}
+                           handleOpen={handleModalOpen}
                 />
 
                 <AppBar position="static">
@@ -163,7 +164,7 @@ export const Header = React.memo(() => {
                             <FormControlLabel
                                 value="Male"
                                 control={<Checkbox onChange={maleOnlyHandleChange} value={maleOnly} color="secondary"/>}
-                                label="Male"
+                                label={<FaceIcon/>}
                                 labelPlacement="start"
                                 style={{marginRight: 10}}
                             />

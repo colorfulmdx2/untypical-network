@@ -9,13 +9,19 @@ export type UserType = {
     id: string
 }
 
+export type UserBaseType = {
+    email: string
+    photoURL: string
+}
+
+
 let initialState = {
-    auth: false as boolean,
-    user: null as any,
-    darkMode: true as boolean,
+    auth: false,
+    user: null as UserBaseType | null,
+    darkMode: true ,
     maleOnly: false,
-    preloader: false as boolean,
-    lang: 'en' as string,
+    preloader: false ,
+    lang: 'en' as 'en' | 'ru',
     languagePackage: {
         en: {
             darkMode: 'Dark Mode',
@@ -29,7 +35,8 @@ let initialState = {
             invalidEmail: 'Invalid email',
             sex: 'Sex',
             male: 'Male',
-            female: 'Female'
+            female: 'Female',
+            maleOnly: 'Male Only'
         },
         ru: {
             darkMode: 'Темная',
@@ -43,10 +50,11 @@ let initialState = {
             invalidEmail: 'Некорректный формат',
             sex: 'Пол',
             male: 'Мужской',
-            female: 'Женский'
+            female: 'Женский',
+            maleOnly: 'Только мужчины'
         }
     },
-    users: [] as any
+    users: [] as UserType[]
 }
 
 
@@ -63,17 +71,17 @@ const slice = createSlice({
         setDarkMod(state, action: PayloadAction<{ value: boolean }>) {
             state.darkMode = action.payload.value
         },
-        setUserData(state, action: PayloadAction<{ user: any }>) {
+        setUserData(state, action: PayloadAction<{ user: UserBaseType | null }>) {
             state.user = action.payload.user
         },
         setPreloader(state, action: PayloadAction<{ value: boolean }>) {
             state.preloader = action.payload.value
         },
-        setLanguage(state, action: PayloadAction<{ value: 'ru' | 'en' | string }>) {
+        setLanguage(state, action: PayloadAction<{ value: 'ru' | 'en'}>) {
             state.lang = action.payload.value
         },
-        setUsers(state, action: PayloadAction<{users: Array<UserType>}>) {
-           state.users = action.payload.users
+        setUsers(state, action: PayloadAction<{ users: Array<UserType> }>) {
+            state.users = action.payload.users
         },
     },
     extraReducers: (builder) => {
@@ -95,8 +103,8 @@ export const login = createAsyncThunk('reducer/login', async (arg, thunkAPI) => 
 
     try {
         let userData = {
-            email: result.user?.email,
-            photoURL: result.user?.photoURL
+            email:result.user ? result.user.email || '' : '',
+            photoURL:result.user ? result.user.photoURL || '' : ''
         }
         thunkAPI.dispatch(setUserData({user: userData}));
         thunkAPI.dispatch(isAuth({value: true}))
@@ -116,8 +124,8 @@ export const authMe = createAsyncThunk('reducer/authMe', async (arg, thunkAPI) =
             .onAuthStateChanged(async (user) => {
                 if (user !== null) {
                     let userData = {
-                        email: user.email,
-                        photoURL: user.photoURL
+                        email: user.email || '',
+                        photoURL: user.photoURL || ''
                     }
 
                     thunkAPI.dispatch(setUserData({user: userData}));
@@ -137,60 +145,80 @@ export const authMe = createAsyncThunk('reducer/authMe', async (arg, thunkAPI) =
 })
 
 export const logOut = createAsyncThunk('reducer/logOut', async (arg, thunkAPI) => {
+    try {
+        await firebase.auth().signOut()
+        thunkAPI.dispatch(isAuth({value: false}))
+        await thunkAPI.dispatch(authMe())
+    } catch (e) {
+        console.log(e)
+    }
 
-    await firebase.auth().signOut()
-    thunkAPI.dispatch(isAuth({value: false}))
-    await thunkAPI.dispatch(authMe())
 
 })
 
 export const initializeApp = createAsyncThunk('reducer/initializeApp', (arg, thunkAPI) => {
-    thunkAPI.dispatch(authMe())
-    thunkAPI.dispatch(getUsers())
+    try {
+        thunkAPI.dispatch(authMe())
+        thunkAPI.dispatch(getUsers())
+    } catch (e) {
+        console.log(e)
+    }
+
 })
 
 //----------------------------------------------------------------------------------------------------------------------
 
 export const getUsers = createAsyncThunk('reducer/addUser', async (arg, thunkAPI) => {
-
-    let data = await db.collection('users').get()
-    let users: UserType[] = []
-    data.forEach((doc) => {
-        // @ts-ignore
-        //users[doc.id] = doc.data()
-        users.push(doc.data())
-    })
-    thunkAPI.dispatch(setUsers({users}))
+    try {
+        let data = await db.collection('users').get()
+        let users: UserType[] = []
+        data.forEach((doc) => {
+            users.push(doc.data() as UserType)
+        })
+        thunkAPI.dispatch(setUsers({users}))
+    } catch (e) {
+        console.log(e)
+    }
 })
 
 export const addUserListener = createAsyncThunk('reducer/addUserListener', async (arg, thunkAPI) => {
+    try {
+        const usersCollection = db.collection('users')
 
-    const usersCollection = db.collection('users')
+        usersCollection.onSnapshot(async doc => {
+            const data = await usersCollection.get()
+            let users: UserType[] = []
+            data.forEach((doc) => {
+                users.push(doc.data() as UserType)
+            })
+            thunkAPI.dispatch(setUsers({users}))
 
-    usersCollection.onSnapshot(async doc => {
-        const data = await usersCollection.get()
-        let users: UserType[] = []
-        data.forEach((doc) => {
-            // @ts-ignore
-            users.push(doc.data())
         })
-        thunkAPI.dispatch(setUsers({users}))
+    } catch (e) {
+        console.log(e)
+    }
 
-    })
 })
 
 export const addUser = createAsyncThunk('reducer/addUser', async (user: UserType, thunkAPI) => {
-    await db.collection('users').doc(user.id).set(user)
+    try {
+        await db.collection('users').doc(user.id).set(user)
+    } catch (e) {
+        console.log(e)
+    }
+
 })
 
 export const deleteUser = createAsyncThunk('reducer/deleteUser', async (id: string, thunkAPI) => {
+    try {
+        await db.collection('users').doc(id).delete()
+    } catch (e) {
 
-    await db.collection('users').doc(id).delete()
+    }
+
 })
 
 //----------------------------------------------------------------------------------------------------------------------
-
-
 
 
 export const reducer = slice.reducer

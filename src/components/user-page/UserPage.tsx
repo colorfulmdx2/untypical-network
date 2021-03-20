@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import {
-    Avatar, Badge,
+    Avatar,
+    Badge,
     Card,
-    CardActionArea,
     createStyles,
     Fade,
     Grid,
@@ -10,13 +10,15 @@ import {
     IconButton,
     makeStyles,
     Paper,
-    Theme, Typography, withStyles
+    Theme,
+    Typography,
+    withStyles
 } from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../redux/store";
 import {grey, red, yellow} from "@material-ui/core/colors";
 import {deleteUser, UserType} from "../../redux/reducer";
-import {AddUserModal} from "../modal/AddUserModal";
+import {UserModal} from "../modal/UserModal";
 import Alert from "@material-ui/lab/Alert";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
@@ -103,16 +105,15 @@ export const UserPage = React.memo((props: UserPagePropsType) => {
     const dispatch = useDispatch()
     const params = useParams<{ id: string }>()
     const history = useHistory()
+
     const user = props.users.find(e => e.id === params.id)
 
     const deleteButtonHandler = () => {
         if (!auth) {
             setInfo(true)
         } else {
-            // eslint-disable-next-line no-restricted-globals
-            const confirmValue = confirm(languagePackage[lang].deleteConfirm)
-            confirmValue && dispatch(deleteUser(params.id))
-            history.push('/')
+            const confirmValue = window.confirm(languagePackage[lang].deleteConfirm)
+            confirmValue && dispatch(deleteUser(params.id)) && history.push('/')
         }
     }
 
@@ -125,19 +126,19 @@ export const UserPage = React.memo((props: UserPagePropsType) => {
     }
 
     const handleModalClose = () => {
-        setOpen(false);
+        setOpen(false)
     };
     const handleModalOpen = () => {
-        setOpen(true);
+        setOpen(true)
     };
 
     return (
         <Fade in={true}>
             <Grid item style={{marginTop: 70}}>
-                <AddUserModal isOpen={open}
-                              handleClose={handleModalClose}
-                              handleOpen={handleModalOpen}
-                              id={params.id}
+                <UserModal isOpen={open}
+                           handleClose={handleModalClose}
+                           handleOpen={handleModalOpen}
+                           user={user}
                 />
                 <Grow in={info}>
                     <Alert className={classes.alert}
@@ -182,12 +183,9 @@ export const UserPage = React.memo((props: UserPagePropsType) => {
                         <Typography className={classes.typography}><WcIcon
                             className={classes.icon}/>
                             {
-
                                 languagePackage[lang][user ? user.sex : 'unknown']
                             }
                         </Typography>
-
-
                     </Paper>
                 </Card>
             </Grid>

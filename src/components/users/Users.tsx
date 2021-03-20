@@ -1,9 +1,13 @@
 import {
     Avatar,
     Badge,
-    Box, CardActionArea,
-    createStyles, Fade,
-    Grid, Grow, IconButton,
+    Card,
+    CardActionArea,
+    createStyles,
+    Fade,
+    Grid,
+    Grow,
+    IconButton,
     makeStyles,
     Paper,
     Theme,
@@ -14,15 +18,14 @@ import React, {useState} from 'react'
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../redux/store";
 import {deleteUser, UserType} from "../../redux/reducer";
-import {grey, indigo, red, yellow} from "@material-ui/core/colors";
+import {grey, red, yellow} from "@material-ui/core/colors";
 import DeleteIcon from '@material-ui/icons/Delete';
-import {Card} from '@material-ui/core';
 import EmailIcon from '@material-ui/icons/Email';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import WcIcon from '@material-ui/icons/Wc';
 import Alert from "@material-ui/lab/Alert";
 import EditIcon from '@material-ui/icons/Edit';
-import {AddUserModal} from "../modal/AddUserModal";
+import {UserModal} from "../modal/UserModal";
 import {useHistory} from 'react-router-dom';
 
 export const UsersTable = React.memo(() => {
@@ -52,7 +55,7 @@ export const UsersTable = React.memo(() => {
             },
 
         }),
-    );
+    )
 
     const classes = useStyles()
 
@@ -62,7 +65,7 @@ export const UsersTable = React.memo(() => {
         <>
 
             <Grid container spacing={3} className={classes.container}>
-                {
+                { //!!!!!!!!!
                     !maleOnly
                         ? users.map((e: UserType) => {
                             return <User name={e.name}
@@ -70,6 +73,7 @@ export const UsersTable = React.memo(() => {
                                          key={e.id}
                                          email={e.email}
                                          sex={e.sex}
+                                         user={e}
                             />
                         })
                         : users.filter((el: UserType) => el.sex !== 'female').map((e: UserType) => {
@@ -78,10 +82,10 @@ export const UsersTable = React.memo(() => {
                                          key={e.id}
                                          email={e.email}
                                          sex={e.sex}
+                                         user={e}
                             />
                         })
                 }
-
             </Grid>
         </>
     )
@@ -121,11 +125,20 @@ const StyledBadge = withStyles((theme: Theme) =>
     }),
 )(Badge);
 
-const User = React.memo((props: UserType) => {
+type UserPropsType = {
+    name: string
+    id: string
+    email: string
+    sex: string
+    user: UserType
+}
+
+const User = React.memo((props: UserPropsType) => {
 
     const [info, setInfo] = useState(false)
     const {darkMode, languagePackage, lang, auth} = useSelector<AppStateType, any>(state => state.reducer)
     const [open, setOpen] = useState(false)
+
 
     const useStyles = makeStyles((theme: Theme) =>
         createStyles({
@@ -192,8 +205,7 @@ const User = React.memo((props: UserType) => {
         if (!auth) {
             setInfo(true)
         } else {
-            // eslint-disable-next-line no-restricted-globals
-            const confirmValue = confirm(languagePackage[lang].deleteConfirm)
+            const confirmValue = window.confirm(languagePackage[lang].deleteConfirm)
             confirmValue && dispatch(deleteUser(props.id))
         }
     }
@@ -216,10 +228,11 @@ const User = React.memo((props: UserType) => {
     return (
         <Fade in={true}>
             <Grid item xs={12} sm={6} md={6} lg={4} xl={4}>
-                <AddUserModal isOpen={open}
-                              handleClose={handleModalClose}
-                              handleOpen={handleModalOpen}
-                              id={props.id}
+                <UserModal isOpen={open}
+                           handleClose={handleModalClose}
+                           handleOpen={handleModalOpen}
+                           user={props.user}
+                           id={props.id}
                 />
                 <Grow in={info}>
                     <Alert className={classes.alert}
@@ -274,8 +287,6 @@ const User = React.memo((props: UserType) => {
                                     languagePackage[lang][props.sex]
                                 }
                             </Typography>
-
-
                         </Paper>
                     </CardActionArea>
                 </Card>

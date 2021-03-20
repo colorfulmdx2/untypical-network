@@ -6,14 +6,15 @@ import {AppStateType} from "./redux/store";
 import {useDispatch, useSelector} from "react-redux";
 import {Redirect, Route, useHistory} from 'react-router-dom';
 import {UsersTable} from './components/users/Users';
-import {getUsers, initializeApp, setLanguage, UserType} from "./redux/reducer";
+import {getUsers, initializeApp, setDarkMod, setLanguage, UserType} from "./redux/reducer";
 import {Header} from "./components/header/Header";
 import {UserPage} from "./components/user-page/UserPage";
 
 
 function App() {
 
-    const {darkMode, preloader} = useSelector<AppStateType, any>(state => state.reducer)
+
+    const {lang, darkMode, preloader} = useSelector<AppStateType, any>(state => state.reducer)
 
     const theme = createMuiTheme({
         palette: {
@@ -36,7 +37,7 @@ function App() {
     const history = useHistory()
     const dispatch = useDispatch()
 
-    const {lang, languagePackage} = useSelector<AppStateType, any>(state => state.reducer)
+
 
     useEffect(() => {
         dispatch(initializeApp())
@@ -52,13 +53,19 @@ function App() {
             })
 
             if (urlData.lang) {
-                dispatch(setLanguage({value: urlData.lang}))
+                dispatch(setLanguage({value: urlData.lang as 'en' | 'ru'}))
+            }
+            if (urlData.darkMode === 'true') {
+                dispatch(setDarkMod({value: true}))
+            }
+            if (urlData.darkMode === 'false') {
+                dispatch(setDarkMod({value: false}))
             }
             setFirstRendering(false)
         }
 
 
-    }, [lang, dispatch, history.location.search, isFirstRendering])
+    }, [lang, dispatch, history.location.search, isFirstRendering, darkMode])
 
     useEffect(() => {
 
@@ -67,6 +74,7 @@ function App() {
             const searchObj: { [key: string]: string } = {}
 
             if (lang) searchObj.lang = lang
+            searchObj.darkMode = darkMode
 
             const queryObj = new URLSearchParams(searchObj)
 
@@ -74,7 +82,7 @@ function App() {
                 search: queryObj.toString(),
             })
         }
-    }, [lang, dispatch, history, isFirstRendering])
+    }, [lang, dispatch, history, isFirstRendering, darkMode])
 
     const users = useSelector<AppStateType, UserType[]>(state => state.reducer.users)
 
