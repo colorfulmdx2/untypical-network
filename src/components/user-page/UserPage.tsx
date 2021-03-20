@@ -160,27 +160,35 @@ export const UserPage = React.memo((props: UserPagePropsType) => {
                         <EditIcon color='primary'
                                   className={classes.edit}/>
                     </IconButton>
-                        <Paper className={classes.box}>
-                            <StyledBadge
-                                overlap="circle"
-                                anchorOrigin={{
-                                    vertical: 'bottom',
-                                    horizontal: 'right',
-                                }}
-                                variant="dot"
-                            >
-                                <Avatar style={{width: 50, height: 50, fontSize: 40}}>{user && user.name.substr(0, 1).toLocaleUpperCase()}</Avatar>
-                            </StyledBadge>
-                            <Typography className={classes.typography}><AssignmentIcon
-                                className={classes.icon}/>{user && user.name}</Typography>
-                            <Typography className={classes.typography}><EmailIcon
-                                className={classes.icon}/>{user && user.email}</Typography>
-                            <Typography className={classes.typography}><WcIcon
-                                className={classes.icon}/>{user && user.sex}
-                            </Typography>
+                    <Paper className={classes.box}>
+                        <StyledBadge
+                            overlap="circle"
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'right',
+                            }}
+                            variant="dot"
+                        >
+                            <Avatar style={{
+                                width: 50,
+                                height: 50,
+                                fontSize: 40
+                            }}>{user && user.name.substr(0, 1).toLocaleUpperCase()}</Avatar>
+                        </StyledBadge>
+                        <Typography className={classes.typography}><AssignmentIcon
+                            className={classes.icon}/>{user && user.name}</Typography>
+                        <Typography className={classes.typography}><EmailIcon
+                            className={classes.icon}/>{user && user.email}</Typography>
+                        <Typography className={classes.typography}><WcIcon
+                            className={classes.icon}/>
+                            {
+
+                                languagePackage[lang][user ? user.sex : 'unknown']
+                            }
+                        </Typography>
 
 
-                        </Paper>
+                    </Paper>
                 </Card>
             </Grid>
         </Fade>

@@ -13,6 +13,7 @@ let initialState = {
     auth: false as boolean,
     user: null as any,
     darkMode: true as boolean,
+    maleOnly: false,
     preloader: false as boolean,
     lang: 'en' as string,
     languagePackage: {
@@ -56,6 +57,9 @@ const slice = createSlice({
         isAuth(state, action: PayloadAction<{ value: boolean }>) {
             state.auth = action.payload.value
         },
+        setMaleOnly(state, action: PayloadAction<{ value: boolean }>) {
+            state.maleOnly = action.payload.value
+        },
         setDarkMod(state, action: PayloadAction<{ value: boolean }>) {
             state.darkMode = action.payload.value
         },
@@ -77,7 +81,7 @@ const slice = createSlice({
     }
 })
 
-export const {isAuth, setDarkMod, setUserData, setPreloader, setLanguage, setUsers} = slice.actions
+export const {isAuth, setDarkMod, setUserData, setPreloader, setLanguage, setUsers, setMaleOnly} = slice.actions
 
 //Thunks----------------------------------------------------------------------------------------------------------------
 

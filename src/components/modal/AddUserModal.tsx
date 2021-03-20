@@ -153,8 +153,8 @@ export const AddUserModal = React.memo((props: AddUserModalType) => {
                             value={sex}
                             onChange={sexHandler}
                         >
-                            <MenuItem value={'Male'}>{languagePackage[lang].male}</MenuItem>
-                            <MenuItem value={'Female'}>{languagePackage[lang].female}</MenuItem>
+                            <MenuItem value={'male'}>{languagePackage[lang].male}</MenuItem>
+                            <MenuItem value={'female'}>{languagePackage[lang].female}</MenuItem>
                         </Select>
                     </FormControl>
                     <AddButton onClick={AddUserHandler} variant="outlined">

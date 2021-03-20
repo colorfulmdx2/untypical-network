@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="36d26d3c-f4a4-41c4-98d7-df55f3559034" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header/Header.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/modal/AddUserModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modal/AddUserModal.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/user-page/UserPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user-page/UserPage.tsx" afterDir="false" />
@@ -77,7 +76,7 @@
       <workItem from="1615913582687" duration="15891000" />
       <workItem from="1615983714907" duration="16809000" />
       <workItem from="1616087221598" duration="2000" />
-      <workItem from="1616087843178" duration="34552000" />
+      <workItem from="1616087843178" duration="39565000" />
     </task>
     <task id="LOCAL-00001" summary="init: start untypical-network">
       <created>1615891467188</created>
@@ -114,7 +113,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616184951619</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="feat: end up multi language functionality">
+      <created>1616188386083</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1616188386083</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -125,13 +131,14 @@
     <MESSAGE value="feat: end up firebase storage" />
     <MESSAGE value="feat: end up delete, edit user UI" />
     <MESSAGE value="feat: end up user page, react memo" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: end up user page, react memo" />
+    <MESSAGE value="feat: end up multi language functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: end up multi language functionality" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="422" y="0" key="CommitChangelistDialog2" timestamp="1616184950003">
+    <state x="422" y="0" key="CommitChangelistDialog2" timestamp="1616188383674">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="422" y="0" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1616184950003" />
+    <state x="422" y="0" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1616188383674" />
     <state x="640" y="159" key="FileChooserDialogImpl" timestamp="1616098628857">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -156,9 +163,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1887" height="254" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1615912818908" />
-    <state x="352" y="104" key="Vcs.Push.Dialog.v2" timestamp="1616184953346">
+    <state x="352" y="104" key="Vcs.Push.Dialog.v2" timestamp="1616188388791">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="352" y="104" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1616184953346" />
+    <state x="352" y="104" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1616188388791" />
   </component>
 </project>

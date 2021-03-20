@@ -2,15 +2,23 @@ import React, {useState} from 'react';
 import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import Badge from '@material-ui/core/Badge';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import {Avatar, Button, ButtonGroup, Fab, FormControlLabel, Grow, Menu, MenuItem, Switch} from "@material-ui/core";
+import {
+    Avatar,
+    Button,
+    ButtonGroup,
+    Checkbox,
+    Fab,
+    FormControlLabel,
+    Grow,
+    Menu,
+    MenuItem,
+    Switch
+} from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
-import {NavLink, useHistory} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import {AppStateType} from "../../redux/store";
-import {login, logOut, setDarkMod, setLanguage} from '../../redux/reducer'
+import {login, logOut, setDarkMod, setLanguage, setMaleOnly} from '../../redux/reducer'
 import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import Alert from '@material-ui/lab/Alert';
@@ -69,8 +77,15 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const Header = React.memo(() => {
 
-    const [open, setOpen] = useState(false)
+    const dispatch = useDispatch()
+    const classes = useStyles();
+    const history = useHistory()
 
+    const [open, setOpen] = useState(false)
+    const [info, setInfo] = useState(false)
+    const [anchorEl, setAnchorEl] = useState(null)
+
+    const {user, auth, lang, languagePackage, darkMode, maleOnly} = useSelector<AppStateType, any>(state => state.reducer)
 
     const handleModalClose = () => {
         setOpen(false);
@@ -78,8 +93,6 @@ export const Header = React.memo(() => {
     const handleModalOpen = () => {
         setOpen(true);
     };
-
-    const [anchorEl, setAnchorEl] = useState(null)
 
     const handleClick = (e: any) => {
         setAnchorEl(e.currentTarget)
@@ -89,20 +102,12 @@ export const Header = React.memo(() => {
         setAnchorEl(null);
     }
 
-    const dispatch = useDispatch()
-
-
-    const darkMode = useSelector<AppStateType, boolean>(state => state.reducer.darkMode)
-
     const darkModeOnChange = () => {
         dispatch(setDarkMod({value: !darkMode}))
     }
-
-    const classes = useStyles();
-    const history = useHistory()
-    const {user, auth, lang, languagePackage} = useSelector<AppStateType, any>(state => state.reducer)
-
-    const [info, setInfo] = useState(false)
+    const maleOnlyHandleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+       dispatch(setMaleOnly({value: event.target.checked}))
+    }
 
     const addUserHandler = () => {
         if (!auth) {
@@ -111,7 +116,6 @@ export const Header = React.memo(() => {
             handleModalOpen()
         }
     }
-
 
 
     return (
@@ -144,6 +148,7 @@ export const Header = React.memo(() => {
                             <Button className={lang === 'en' ? classes.selected : ''}
                                     onClick={() => dispatch(setLanguage({value: 'en'}))}>en</Button>
                         </ButtonGroup>
+
                         <div className={classes.grow}/>
                         <Grow in={true}>
                             <Fab color="secondary"
@@ -155,7 +160,13 @@ export const Header = React.memo(() => {
                             </Fab>
                         </Grow>
                         <div className={classes.sectionDesktop}>
-
+                            <FormControlLabel
+                                value="Male"
+                                control={<Checkbox onChange={maleOnlyHandleChange} value={maleOnly} color="secondary"/>}
+                                label="Male"
+                                labelPlacement="start"
+                                style={{marginRight: 10}}
+                            />
                             <FormControlLabel label={languagePackage[lang].darkMode}
                                               control={
                                                   <Switch checked={darkMode}

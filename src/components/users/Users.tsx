@@ -56,22 +56,32 @@ export const UsersTable = React.memo(() => {
 
     const classes = useStyles()
 
-    const users = useSelector<AppStateType, UserType[]>(state => state.reducer.users)
+    const {users, maleOnly} = useSelector<AppStateType, any>(state => state.reducer)
 
     return (
         <>
 
             <Grid container spacing={3} className={classes.container}>
                 {
-                    users.map((e: UserType) => {
-                        return <User name={e.name}
-                                     id={e.id}
-                                     key={e.id}
-                                     email={e.email}
-                                     sex={e.sex}
-                        />
-                    })
+                    !maleOnly
+                        ? users.map((e: UserType) => {
+                            return <User name={e.name}
+                                         id={e.id}
+                                         key={e.id}
+                                         email={e.email}
+                                         sex={e.sex}
+                            />
+                        })
+                        : users.filter((el: UserType) => el.sex !== 'female').map((e: UserType) => {
+                            return <User name={e.name}
+                                         id={e.id}
+                                         key={e.id}
+                                         email={e.email}
+                                         sex={e.sex}
+                            />
+                        })
                 }
+
             </Grid>
         </>
     )
@@ -261,7 +271,7 @@ const User = React.memo((props: UserType) => {
                             <Typography className={classes.typography}>
                                 <WcIcon className={classes.icon}/>
                                 {
-                                    props.sex
+                                    languagePackage[lang][props.sex]
                                 }
                             </Typography>
 
