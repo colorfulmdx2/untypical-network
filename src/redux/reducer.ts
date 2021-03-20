@@ -24,7 +24,7 @@ let initialState = {
     lang: 'en' as 'en' | 'ru',
     languagePackage: {
         en: {
-            darkMode: 'Dark Mode',
+            darkMode: 'Dark',
             login: 'login',
             logOut: 'Logout',
             notification: 'You have to login before make this action',

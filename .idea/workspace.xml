@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="36d26d3c-f4a4-41c4-98d7-df55f3559034" name="Default Changelist" comment="">
+    <list default="true" id="36d26d3c-f4a4-41c4-98d7-df55f3559034" name="Default Changelist" comment="deploy: end up deploy">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modal/AddUserModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modal/UserModal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/user-page/UserPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user-page/UserPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/users/Users.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/users/Users.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/redux/reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducer.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
@@ -79,7 +74,7 @@
       <workItem from="1615913582687" duration="15891000" />
       <workItem from="1615983714907" duration="16809000" />
       <workItem from="1616087221598" duration="2000" />
-      <workItem from="1616087843178" duration="46243000" />
+      <workItem from="1616087843178" duration="49501000" />
     </task>
     <task id="LOCAL-00001" summary="init: start untypical-network">
       <created>1615891467188</created>
@@ -130,7 +125,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616242814673</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="feat: end up untypical-network">
+      <created>1616251001439</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1616251001439</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -143,13 +145,15 @@
     <MESSAGE value="feat: end up user page, react memo" />
     <MESSAGE value="feat: end up multi language functionality" />
     <MESSAGE value="feat: end up male only sort" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: end up male only sort" />
+    <MESSAGE value="feat: end up untypical-network" />
+    <MESSAGE value="deploy: end up deploy" />
+    <option name="LAST_COMMIT_MESSAGE" value="deploy: end up deploy" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="422" y="0" key="CommitChangelistDialog2" timestamp="1616242812758">
+    <state x="422" y="0" key="CommitChangelistDialog2" timestamp="1616255864668">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="422" y="0" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1616242812758" />
+    <state x="422" y="0" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1616255864668" />
     <state x="640" y="159" key="FileChooserDialogImpl" timestamp="1616098628857">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -174,9 +178,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1887" height="254" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1615912818908" />
-    <state x="352" y="104" key="Vcs.Push.Dialog.v2" timestamp="1616243490738">
+    <state x="352" y="104" key="Vcs.Push.Dialog.v2" timestamp="1616251037514">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="352" y="104" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1616243490738" />
+    <state x="352" y="104" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1616251037514" />
   </component>
 </project>
